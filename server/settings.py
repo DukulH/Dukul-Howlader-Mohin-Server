@@ -85,7 +85,7 @@ DATABASES = {
         'USER' : 'agrigate',
         'PASSWORD' : '1498',
         'HOST' : 'localhost',
-        'PORT' : '5432',
+        'PORT' : '5433',
     }
 }
 
