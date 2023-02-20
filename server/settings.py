@@ -13,10 +13,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import dj_database_url
 from decouple import config
-from dotenv import load_dotenv
 import os
 
-load_dotenv('.env')
+
+DATABASE_URL = os.getenv("DATABASE_URL")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-k#p1&hthcvwl7qa9xh)$5@q&b+j87#ss3p@0(&5i)3zfqs_6el
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -84,8 +84,8 @@ WSGI_APPLICATION = 'server.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config('postgresql://postgres:yIxy9W0ER7RdTEGVEJli@containers-us-west-79.railway.app:6037/railway')
-}
+    'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=1800)
+    }
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
