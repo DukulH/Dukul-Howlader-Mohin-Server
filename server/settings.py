@@ -13,7 +13,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import dj_database_url
 from decouple import config
+from dotenv import load_dotenv
+import os
 
+load_dotenv('.env')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -90,7 +93,7 @@ DATABASES = {
         'PORT' : '5432',
     }
 }
-DATABASES['default'] = dj_database_url.config()
+DATABASES['default'] = dj_database_url.config(os.environ.get('DATABASE_URL'))
 
 
 # Password validation
