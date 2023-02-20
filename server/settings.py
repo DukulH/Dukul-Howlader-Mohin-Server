@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-k#p1&hthcvwl7qa9xh)$5@q&b+j87#ss3p@0(&5i)3zfqs_6el
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://dukul-howlader-mohin-server-production.up.railway.app']
+ALLOWED_HOSTS = ['dukul-howlader-mohin-server-production.up.railway.app']
 
 
 # Application definition
@@ -83,19 +83,19 @@ WSGI_APPLICATION = 'server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=1800)
-    }
 # DATABASES = {
-#     'default': {
-#         'ENGINE':'django.db.backends.postgresql',
-#         'NAME':'railway',
-#         'USER' :'postgres',
-#         'PASSWORD' :'yIxy9W0ER7RdTEGVEJli',
-#         'HOST' : 'containers-us-west-79.railway.app',
-#         'PORT' : '6037',
+#     'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=1800)
 #     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE':'django.db.backends.postgresql',
+        'NAME':'railway',
+        'USER' :'postgres',
+        'PASSWORD' :'X4poNXBN8foxNOy7Iev0',
+        'HOST' : 'containers-us-west-91.railway.app',
+        'PORT' : '7546',
+    }
+}
 
 
 
