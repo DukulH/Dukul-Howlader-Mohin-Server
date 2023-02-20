@@ -84,16 +84,8 @@ WSGI_APPLICATION = 'server.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'agrigate',
-        'USER' : 'agrigate',
-        'PASSWORD' : '1498',
-        'HOST' : 'localhost',
-        'PORT' : '5432',
-    }
+    'default': dj_database_url.config('postgresql://postgres:yIxy9W0ER7RdTEGVEJli@containers-us-west-79.railway.app:6037/railway')
 }
-DATABASES['default'] = dj_database_url.config('postgresql://postgres:yIxy9W0ER7RdTEGVEJli@containers-us-west-79.railway.app:6037/railway')
 
 
 # Password validation
