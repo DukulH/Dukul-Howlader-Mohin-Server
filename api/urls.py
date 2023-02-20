@@ -6,4 +6,5 @@ urlpatterns = [
     path('categoryWiseData/<int:id>/', views.getCategoryWiseTopSellingProductData),
     path('topProductData/', views.getTopProductsData),
     path('topCustomerData/', views.getTopCustomerData),
+    path('regionAndDateWiseData/<int:id>/', views.getRegionAndDateWiseSalesData, name="regionAndDateWiseData"),
 ]

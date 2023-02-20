@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Product, Order, Region, Customer
 from django.db.models import Sum, Count
-from .serializers import ProductSerializer, CustomerSerializer
+from .serializers import ProductSerializer, CustomerSerializer, OrderSerializer
 
 @api_view(['GET'])
 def getCardData(request):
@@ -58,4 +58,33 @@ def getTopCustomerData(request):
         Limit 3
     ''')
     data = CustomerSerializer(topCustomerData, many=True).data
+    return Response(data)
+
+@api_view(['POST'])
+def getRegionAndDateWiseSalesData(request,*args, **kwargs):
+    region_id = kwargs['id']
+    start_date = request.data['startDate']
+    end_date = request.data['endDate']
+    if(region_id == 0):
+        regionAndDateWiseSalesData = Order.objects.raw('''
+            select * from(select od.region_id, od.order_id, o.order_date, o.order_total from public."Order_Details" as od
+            left join public."Order" as o
+            on od.order_id = o.order_id
+            -- where od.region_id = 1
+            group by od.order_id, od.region_id, o.order_date, o.order_total
+            order by o.order_date)as x
+            WHERE x.order_date between %s AND %s                                              
+            ''',[start_date, end_date])
+        data = OrderSerializer(regionAndDateWiseSalesData, many=True).data
+    else:
+        regionAndDateWiseSalesData = Order.objects.raw('''
+            select * from(select od.region_id, od.order_id, o.order_date, o.order_total from public."Order_Details" as od
+            left join public."Order" as o
+            on od.order_id = o.order_id
+            where od.region_id = %s
+            group by od.order_id, od.region_id, o.order_date, o.order_total
+            order by o.order_date)as x
+            WHERE x.order_date between %s AND %s                                               
+            ''',[region_id,start_date,end_date])
+        data = OrderSerializer(regionAndDateWiseSalesData, many=True).data
     return Response(data)

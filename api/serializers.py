@@ -32,10 +32,16 @@ class ProductSerializer(serializers.ModelSerializer):
                 return ''
             
 class OrderSerializer(serializers.ModelSerializer):
+        region_id = serializers.SerializerMethodField()
         class Meta:
             model = Order
             fields = "__all__"
             
+        def get_region_id(self, obj):
+            if hasattr(obj, 'region_id'):
+                return obj.region_id
+            else:
+                return ""
 class OrderDetailsSerializer(serializers.ModelSerializer):
         class Meta:
             model = Order_Details
