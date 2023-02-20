@@ -83,20 +83,20 @@ WSGI_APPLICATION = 'server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=1800)
-    }
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'agrigate',
-#         'USER' : 'agrigate',
-#         'PASSWORD' : '1498',
-#         'HOST' : 'localhost',
-#         'PORT' : '5432',
+#     'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=1800)
 #     }
-# }
-# DATABASES['default'] = dj_database_url.config('postgresql://postgres:yIxy9W0ER7RdTEGVEJli@containers-us-west-79.railway.app:6037/railway')
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER' : 'postgres',
+        'PASSWORD' : 'yIxy9W0ER7RdTEGVEJli',
+        'HOST' : 'containers-us-west-79.railway.app',
+        'PORT' : '6037',
+    }
+}
+
 
 
 # Password validation
